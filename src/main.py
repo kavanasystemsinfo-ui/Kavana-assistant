@@ -9,6 +9,7 @@ from typing import Optional
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, UploadFile, File
+from fastapi.staticfiles import StaticFiles
 
 load_dotenv()
 
@@ -179,3 +180,6 @@ def stats():
         "documents_indexed": rag.collection.count(),
         "collections": len(rag.client.list_collections()),
     }
+
+
+app.mount("/", StaticFiles(directory="frontend/dist", html=True), name="frontend")
