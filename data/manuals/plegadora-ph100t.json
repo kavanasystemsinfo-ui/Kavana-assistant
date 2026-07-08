@@ -1,0 +1,83 @@
+{
+  "machine": "Plegadora CNC Hidráulica Modelo PH-100T",
+  "manufacturer": "Fabricación Nacional",
+  "category": "plegadoras",
+  "sections": [
+    {
+      "id": "errors",
+      "title": "Códigos de Error y Soluciones",
+      "entries": [
+        {
+          "code": "EP-101",
+          "title": "Desviación de ángulo de plegado",
+          "symptoms": "El ángulo real no coincide con el programado (±2°)",
+          "causes": [
+            "Desgaste del punzón o matriz",
+            "Calibración incorrecta del tope trasero",
+            "Variación de espesor del material",
+            "Compensación de curvatura desactivada"
+          ],
+          "solutions": [
+            "1. Verificar estado del utillaje: punzón y matriz. Reemplazar si hay desgaste visible",
+            "2. Recalibrar tope trasero: menú → Calibración → Tope trasero → Automático",
+            "3. Activar compensación de curvatura: menú → Parámetros → Compensación → Activar",
+            "4. Ajustar profundidad de penetración: incrementar 0.1mm por grado de corrección"
+          ]
+        },
+        {
+          "code": "EP-102",
+          "title": "Fallo en cilindro hidráulico",
+          "symptoms": "La mesa sube de forma irregular o no mantiene presión",
+          "causes": [
+            "Nivel bajo de aceite hidráulico",
+            "Aire en el circuito hidráulico",
+            "Válvula proporcional sucia o averiada",
+            "Filtro hidráulico obstruido"
+          ],
+          "solutions": [
+            "1. Verificar nivel de aceite: debe estar entre 70-90% de la mirilla",
+            "2. Purgar aire: ciclo de purga automática (menú → Mantenimiento → Purgar)",
+            "3. Limpiar válvula proporcional con ultrasonidos o reemplazar",
+            "4. Cambiar filtro hidráulico (cada 500 horas según manual)"
+          ]
+        },
+        {
+          "code": "EP-201",
+          "title": "Error de posicionamiento de tope trasero",
+          "symptoms": "La posición del tope trasero no coincide con la programada",
+          "causes": [
+            "Guías lineales sucias o sin lubricación",
+            "Pérdida de pasos en motor paso a paso",
+            "Encoder del tope trasero descalibrado"
+          ],
+          "solutions": [
+            "1. Limpiar y lubricar guías lineales del tope trasero",
+            "2. Realizar homing: menú → Ejes → Tope trasero → Home",
+            "3. Recalibrar encoder: menú → Calibración → Encoder tope → Automático"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tips",
+      "title": "Trucos y Consejos de Plegado",
+      "entries": [
+        {
+          "code": "TP-001",
+          "problem": "El material se agrieta en el plegado",
+          "solution": "Aumentar el radio de plegado. Mínimo recomendado: 2x espesor para acero dulce, 3x para aluminio."
+        },
+        {
+          "code": "TP-002",
+          "problem": "Marca de pinza en la chapa",
+          "solution": "Colocar protección de nylon en las pinzas. Si persiste, reducir presión de sujeción un 10%."
+        },
+        {
+          "code": "TP-003",
+          "problem": "Retorno elástico excesivo",
+          "solution": "Sobreplegar 2-3 grados adicionales. Consultar tabla de retorno elástico para el material específico."
+        }
+      ]
+    }
+  ]
+}

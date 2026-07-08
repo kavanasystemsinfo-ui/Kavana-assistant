@@ -1,0 +1,152 @@
+{
+  "machine": "Perfiladora CNC Modelo PF-2000",
+  "manufacturer": "Fabricación Nacional",
+  "category": "perfiladoras",
+  "sections": [
+    {
+      "id": "errors",
+      "title": "Códigos de Error y Soluciones",
+      "entries": [
+        {
+          "code": "E-101",
+          "title": "Desviación de perfil hacia arriba",
+          "symptoms": "El perfil metálico se curva hacia arriba durante el conformado",
+          "causes": [
+            "Desgaste en rodillos superiores de la estación 3",
+            "Presión desigual entre rodillos superior e inferior",
+            "Calibración incorrecta de la contra-curvatura"
+          ],
+          "solutions": [
+            "1. Verificar y reemplazar rodillos superiores de la estación 3 si presentan desgaste visible",
+            "2. Ajustar la presión hidráulica de los rodillos superiores: reducir 5 bar y probar",
+            "3. Recalibrar la contracurvatura: acceder a menú → Ajustes → Calibración → Contracurvatura → valor recomendado: 0.5mm",
+            "4. Verificar que el espesor del material está dentro de tolerancia (±0.1mm)"
+          ],
+          "prevention": "Inspección semanal de rodillos. Mantener lubricación cada 40 horas de operación."
+        },
+        {
+          "code": "E-102",
+          "title": "Desviación de perfil hacia la izquierda/derecha",
+          "symptoms": "El perfil se tuerce lateralmente al salir de la máquina",
+          "causes": [
+            "Rodillos laterales desalineados",
+            "Guías laterales desgastadas",
+            "Velocidad de avance excesiva para el espesor del material"
+          ],
+          "solutions": [
+            "1. Comprobar alineación de rodillos laterales con galga de alineación",
+            "2. Ajustar guías laterales: tolerancia máxima 0.3mm",
+            "3. Reducir velocidad de avance un 15% y observar mejora",
+            "4. Verificar que el ancho de la banda de acero es uniforme"
+          ],
+          "prevention": "Verificar alineación al cambio de bobina. Mantener velocidad según tabla de espesores."
+        },
+        {
+          "code": "E-103",
+          "title": "Ondulación superficial en el perfil",
+          "symptoms": "El perfil presenta ondas en la superficie del metal",
+          "causes": [
+            "Rodillos de formado con juego excesivo",
+            "Tensión de alimentación incorrecta",
+            "Lubricación insuficiente en estaciones de formado"
+          ],
+          "solutions": [
+            "1. Ajustar juego de rodillos: máximo 0.05mm de holgura",
+            "2. Aumentar tensión de freno del desbobinador: ajustar par a 15-20 Nm",
+            "3. Verificar nivel de lubricante en depósito central (mín. 60%)",
+            "4. Limpiar rodillos con disolvente industrial si hay acumulación de material"
+          ]
+        },
+        {
+          "code": "E-201",
+          "title": "Error de posicionamiento en corte",
+          "symptoms": "La pieza cortada no coincide con la longitud programada",
+          "causes": [
+            "Encoder de medición descalibrado o sucio",
+            "Deslizamiento de la pinza de arrastre",
+            "Variación de velocidad en motor de avance"
+          ],
+          "solutions": [
+            "1. Limpiar encoder con aire comprimido y verificar señal",
+            "2. Ajustar presión de pinza neumática a 6 bar",
+            "3. Verificar tensión de correa del motor de avance",
+            "4. Recalibrar encoder: menú → Calibración → Encoder → Ejecutar rutina automática"
+          ]
+        },
+        {
+          "code": "E-301",
+          "title": "Rotura de herramienta de corte",
+          "symptoms": "La cuchilla/cizalla no corta limpiamente o se rompe",
+          "causes": [
+            "Ángulo de corte incorrecto para el espesor",
+            "Material más duro de lo especificado",
+            "Holgura excesiva entre cuchillas",
+            "Fatiga del filo por número de ciclos"
+          ],
+          "solutions": [
+            "1. Verificar ángulo de corte según tabla de materiales (ver anexo A)",
+            "2. Ajustar holgura entre cuchillas: 0.02-0.05mm según espesor",
+            "3. Reemplazar cuchillas. Vida útil estimada: 50.000 cortes",
+            "4. Verificar dureza del material con durómetro portátil"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "maintenance",
+      "title": "Mantenimiento Preventivo",
+      "entries": [
+        {
+          "code": "M-001",
+          "interval": "Cada 8 horas",
+          "task": "Lubricación de rodillos y guías",
+          "details": "Aplicar lubricante ISO VG 68 en todos los rodamientos de las estaciones de formado. Verificar nivel de aceite en caja de engranajes."
+        },
+        {
+          "code": "M-002",
+          "interval": "Cada 40 horas",
+          "task": "Inspección de rodillos de formado",
+          "details": "Verificar desgaste en rodillos. Medir diámetro con micrómetro. Reemplazar si el desgaste supera 0.1mm del diámetro nominal."
+        },
+        {
+          "code": "M-003",
+          "interval": "Cada 200 horas",
+          "task": "Cambio de aceite hidráulico",
+          "details": "Vaciar depósito, limpiar filtros, rellenar con aceite ISO VG 46. Purgar aire del sistema."
+        },
+        {
+          "code": "M-004",
+          "interval": "Cada 1000 horas",
+          "task": "Revisión general de rodamientos",
+          "details": "Reemplazar todos los rodamientos de las estaciones de formado. Verificar alineación general de la máquina."
+        }
+      ]
+    },
+    {
+      "id": "tips",
+      "title": "Trucos y Consejos de Fabricación",
+      "entries": [
+        {
+          "code": "T-001",
+          "problem": "El perfil no cierra correctamente",
+          "solution": "Ajustar la apertura del preformado en las primeras estaciones. Reducir 0.2mm la separación en estación 1 y 2."
+        },
+        {
+          "code": "T-002",
+          "problem": "Marcas en la superficie del perfil",
+          "solution": "Limpiar rodillos con alcohol isopropílico. Si persiste, lijar ligeramente los rodillos con lija de grano 400."
+        },
+        {
+          "code": "T-003",
+          "problem": "Ruido excesivo durante el formado",
+          "solution": "Verificar lubricación. Aumentar velocidad un 10% para evitar vibraciones por resonancia."
+        },
+        {
+          "code": "T-004",
+          "problem": "Variación de medidas entre piezas",
+          "solution": "Verificar tensión del freno del desbobinador. Ajustar a 18-22 Nm. Comprobar que la bobina no tiene ovalamiento."
+        }
+      ]
+    }
+  ]
+}
