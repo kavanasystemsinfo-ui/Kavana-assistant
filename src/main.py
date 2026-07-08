@@ -3,10 +3,15 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 from pathlib import Path
 from typing import Optional
 
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, UploadFile, File
+
+load_dotenv()
+
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
