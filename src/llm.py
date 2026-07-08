@@ -10,22 +10,26 @@ logger = logging.getLogger("kavana.assistant.llm")
 
 
 class LLMClient:
-    """Cliente ligero para OpenAI.
+    """Cliente ligero para LLM vía OpenAI o OpenRouter.
     
-    Sin LangChain: llama directamente a la API de OpenAI.
+    Sin LangChain: llama directamente a la API.
     """
 
-    def __init__(self, api_key: Optional[str] = None, model: str = "gpt-4o-mini"):
-        self.api_key = api_key or os.getenv("OPENAI_API_KEY", "")
-        self.model = model
+    def __init__(self, api_key: Optional[str] = None, model: str = "gpt-4o-mini", 
+                 base_url: Optional[str] = None):
+        self.api_key = api_key or os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY", "")
+        self.model = model or os.getenv("LLM_MODEL", "gpt-4o-mini")
+        self.base_url = base_url or os.getenv("LLM_BASE_URL", "https://openrouter.ai/api/v1")
         if not self.api_key:
-            raise ValueError("OPENAI_API_KEY es requerida")
+            raise ValueError("Se requiere OPENROUTER_API_KEY o OPENAI_API_KEY")
 
     def ask(self, question: str, context: list[dict]) -> str:
-        """Responde una pregunta usando el contexto recuperado por RAG."""
         import openai
 
-        client = openai.OpenAI(api_key=self.api_key)
+        client = openai.OpenAI(
+            api_key=self.api_key,
+            base_url=self.base_url,
+        )
 
         # Construir contexto a partir de los fragmentos recuperados
         context_text = self._format_context(context)
@@ -43,7 +47,6 @@ REGLAS:
 6. Responde en español, con el mismo tono que un compañero experimentado."""
 
         user_message = f"CONTEXTO (manuales técnicos):\n{context_text}\n\n---\n\nPREGUNTA DEL OPERARIO:\n{question}"
-
         response = client.chat.completions.create(
             model=self.model,
             messages=[
@@ -73,8 +76,10 @@ REGLAS:
     def analyze_question(self, question: str) -> dict:
         """Determina si la pregunta necesita RAG, Tool o ambas."""
         import openai
-        client = openai.OpenAI(api_key=self.api_key)
-
+        client = openai.OpenAI(
+            api_key=self.api_key,
+            base_url=self.base_url,
+        )
         response = client.chat.completions.create(
             model=self.model,
             messages=[

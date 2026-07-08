@@ -64,9 +64,10 @@ class LoginResponse(BaseModel):
 async def startup():
     global llm
     import os
-    api_key = os.getenv("OPENAI_API_KEY", "")
+    api_key = os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY", "")
     if api_key:
         llm = LLMClient(api_key=api_key)
+        logger.info("🤖 LLM configurado: %s via OpenRouter", llm.model)
     # Indexar manuales disponibles
     if MANUALS_DIR.exists():
         for f in sorted(MANUALS_DIR.glob("*.json")):
@@ -75,7 +76,7 @@ async def startup():
                     manual = json.load(fh)
                 count = rag.index_manual(manual)
                 if count:
-                    logger.info("📚 Indexado %s: %d entradas", f.name, count)
+                    logger.info("📚 Indexado %s: %d entradas nuevas", f.name, count)
             except Exception as e:
                 logger.warning("⚠️ Error indexando %s: %s", f.name, e)
 
