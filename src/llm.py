@@ -74,7 +74,10 @@ REGLAS:
         return "\n".join(parts)
 
     def analyze_question(self, question: str) -> dict:
-        """Determina si la pregunta necesita RAG, Tool o ambas."""
+        """Determina si la pregunta necesita RAG.
+
+        v1: solo RAG. Fase 2: enrutamiento a tools externas (MCP).
+        """
         import openai
         client = openai.OpenAI(
             api_key=self.api_key,
@@ -83,12 +86,15 @@ REGLAS:
         response = client.chat.completions.create(
             model=self.model,
             messages=[
-                {"role": "system", "content": """Analiza la pregunta del operario y determina:
-- "type": "rag" si pregunta sobre manuales, errores, soluciones técnicas
-- "type": "tool" si necesita datos en vivo (stock, producción, inventario)
-- "type": "both" si necesita ambas
+                {"role": "system", "content": """Analiza la pregunta del operario y determina si necesita
+consulta a los manuales técnicos (RAG) o es una conversación general.
 
-Responde SOLO con JSON: {"type": "rag"|"tool"|"both", "reason": "explicación breve"}"""},
+- "type": "rag" si pregunta sobre manuales, errores, códigos, soluciones técnicas
+- "type": "general" si es saludo, conversación informal o fuera de contexto técnico
+
+Responde SOLO con JSON: {"type": "rag"|"general", "reason": "explicación breve"}
+
+Fase 2 (MCP): se añadirá type "tool" para consultar datos en vivo (stock, producción)."""},
                 {"role": "user", "content": question},
             ],
             temperature=0.1,
