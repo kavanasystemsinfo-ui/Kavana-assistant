@@ -229,6 +229,13 @@ Independiente del módulo de auth de V3. Cuando se integre, se puede reemplazar 
 
 ## 6. Registro de Decisiones Técnicas (ADRs)
 
+### ADR-005: Coste cero y decisiones tomadas por presupuesto
+
+**Contexto:** El proyecto se mantiene a 0 €/mes sobre un modelo gratuito y el VPS existente.  
+**Decisión:** Aceptar el coste cero como restricción de diseño y resolver a favor de la opción gratuita el modelo, los embeddings, la base vectorial, la autenticación y el hosting.  
+**Consecuencia:** El coste queda en 0 €, pero la cuota la impone el proveedor, el corpus es de 19 entradas escritas a mano y no hay aislamiento por cliente.  
+**Documento completo:** [`docs/adr/ADR-005-coste-cero-y-decisiones-por-presupuesto.md`](adr/ADR-005-coste-cero-y-decisiones-por-presupuesto.md) — contexto, alternativas evaluadas, consecuencias y señal de revisión.
+
 ### ADR-001: No usar LangChain
 
 **Contexto:** LangChain es el estándar de facto para aplicaciones RAG.  
